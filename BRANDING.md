@@ -4,7 +4,7 @@ The first question a design lead asks of any theming system is whether it will e
 
 The background worth naming is the failure mode this design reacts against. Wallpaper-seeded system theming, where the whole UI is recolored from a photo the user picked, can dissolve a brand into whatever the device happens to be showing. A brand that adopts a parametric system reasonably fears the same dissolution. The answer in this package is that a brand controls its hue and its pinned assets outright, and delegates only lightness and the surrounding neutrals to the solver, which is exactly the part a brand should not be hand-managing across five modes anyway.
 
-## Move one: the brand is the hue, the lightness belongs to the reader
+## Move One: the Brand Is the Hue, the Lightness Belongs to the Reader
 
 A brand color is really a hue and a chroma. Its lightness is not a fixed property of the brand; it is whatever makes the color legible against the surface it sits on. On a white page a brand blue must be dark enough to read; on a near-black page the same brand blue must be light enough to read. These are different lightnesses of the same color, and a brand that pins a single hex value is really pinning one lightness and then discovering it fails on three of the five backgrounds.
 
@@ -19,7 +19,7 @@ const tokens = deriveByKey('dark', 1, family, 'default');
 
 Two limits are worth stating plainly. Where a brand color is very saturated, the sRGB gamut cannot hold its full chroma at every lightness, so the solver reduces chroma toward the neutral axis at the extremes, never shifting the hue. The fidelity report (`brandFidelity`, shown in the verification output) tells a brand exactly where this happens: the hue stays put, and the chroma retained drops below one hundred percent only at the backgrounds where sRGB runs out. And a solved accent is not the brand's exact hex on most backgrounds, by design, because it has been moved in lightness to stay readable; the OKLab distance the report shows is dominated by that intended lightness change, not by drift in the brand's identity.
 
-## Move two: identity versus chrome
+## Move Two: Identity versus Chrome
 
 Not everything colored is UI. A logo, a wordmark, and the colors inside an illustration or a product photograph are pinned content. They are the brand's identity, and the system never recolors them. The UI around them, the backgrounds and text and borders and buttons, is chrome, and that is what the solver derives.
 
@@ -27,7 +27,7 @@ The rule that keeps pinned identity working across modes is the backdrop rule. A
 
 The division of labor is therefore clean. Identity is pinned and never touched. Chrome is derived and always compliant. The backdrop rule is the seam between them, and it is the brand's job to mark which elements are pinned identity so the system knows to give them a plate rather than treat them as chrome.
 
-## Move three: range as policy
+## Move Three: Range as Policy
 
 A brand does not have to expose every primitive to every reader. The branded preset lets a brand decide the range of control it offers, and that decision is a brand policy, not a technical limit.
 

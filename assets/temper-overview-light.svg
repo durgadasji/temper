@@ -4,7 +4,7 @@
 <text x="248" y="78" font-size="20" fill="#3F4143">Tuned, Equal-Mode Palettes for Every Reader</text>
 <text x="60" y="112" font-size="18" font-style="italic" fill="#1E4E8C">A well-tempered palette: every position playable, every floor held.</text>
 <rect x="60" y="145" width="330" height="300" rx="10" fill="#FFFFFF" stroke="#C9CDD1"/>
-<text x="84" y="185" font-size="15" font-weight="700" letter-spacing="2" fill="#3F4143">WHY IT EXISTS</text>
+<text x="84" y="185" font-size="16" font-weight="700"  fill="#3F4143">Why It Exists</text>
 <text x="84" y="218" font-size="17" font-weight="600" fill="#17181A">Readers differ.</text>
 <text x="84" y="240" font-size="15" fill="#3F4143">Eyes, screens, rooms, and</text>
 <text x="84" y="260" font-size="15" fill="#3F4143">color vision all vary.</text>
@@ -15,7 +15,7 @@
 <text x="84" y="396" font-size="15" fill="#3F4143">stop at ship. The reader</text>
 <text x="84" y="416" font-size="15" fill="#3F4143">arrives after.</text>
 <rect x="420" y="145" width="400" height="300" rx="10" fill="#FFFFFF" stroke="#C9CDD1"/>
-<text x="444" y="185" font-size="15" font-weight="700" letter-spacing="2" fill="#3F4143">THREE READER DIALS</text>
+<text x="444" y="185" font-size="16" font-weight="700"  fill="#3F4143">Three Reader Dials</text>
 <text x="444" y="222" font-size="16" font-weight="600" fill="#17181A">Tone</text>
 <rect x="560" y="204" width="42" height="26" rx="5" fill="#F0F4F9" stroke="#C9CDD1"/>
 <rect x="614" y="204" width="42" height="26" rx="5" fill="#DBDEE3" stroke="#C9CDD1"/>
@@ -40,7 +40,7 @@
 <text x="444" y="396" font-size="15" fill="#3F4143">not picked: floors for legibility, ceilings</text>
 <text x="444" y="416" font-size="15" fill="#3F4143">for glare, held by computation.</text>
 <rect x="850" y="145" width="290" height="300" rx="10" fill="#FFFFFF" stroke="#C9CDD1"/>
-<text x="874" y="185" font-size="15" font-weight="700" letter-spacing="2" fill="#3F4143">VERIFIED, NOT PROMISED</text>
+<text x="874" y="185" font-size="16" font-weight="700"  fill="#3F4143">Verified, Not Promised</text>
 <text x="874" y="234" font-size="40" font-weight="700" fill="#255D34">288/288</text>
 <text x="874" y="262" font-size="15" fill="#3F4143">positions pass every floor,</text>
 <text x="874" y="282" font-size="15" fill="#3F4143">on every surface, by script.</text>
@@ -50,7 +50,7 @@
 <text x="874" y="400" font-size="16" font-weight="600" fill="#17181A">Meaning rides in text</text>
 <text x="874" y="420" font-size="15" fill="#3F4143">first; color reinforces.</text>
 <rect x="60" y="480" width="1080" height="110" rx="10" fill="#FFFFFF" stroke="#C9CDD1"/>
-<text x="84" y="516" font-size="15" font-weight="700" letter-spacing="2" fill="#3F4143">AGAINST THE FIELD</text>
+<text x="84" y="516" font-size="16" font-weight="700"  fill="#3F4143">Against the Field</text>
 <text x="84" y="544" font-size="16" font-weight="600" fill="#1E4E8C">vs theme lists</text>
 <text x="84" y="564" font-size="14" fill="#3F4143">composes; 30 constants,</text>
 <text x="84" y="581" font-size="14" fill="#3F4143">288 guaranteed positions</text>
