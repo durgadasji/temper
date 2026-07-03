@@ -27,6 +27,89 @@ The five modes are System, Light, Soft Light, Soft Dark, and Dark. They form a s
 - `scripts/apca.mjs`: an APCA Lc implementation used by the verifier for a perceptual readout (dev-time only, not shipped in the runtime).
 - `scripts/build-demo-bundle.mjs`: regenerates `tuner.bundle.js` from the modules.
 
+## Quickstart: Three Paths In
+
+The fastest path is one file and no JavaScript; the fullest is the live tuner. Pick by how much you want.
+
+### Path 1: Static Modes Only (any site, any host, 30 seconds)
+
+Copy `theme.css` into your project and set a mode on the root element. There is no build step and nothing Vercel-specific; this works on any host, including plain static hosting.
+
+```html
+<link rel="stylesheet" href="/theme.css">
+<html data-theme="system">
+```
+
+Style everything with the semantic custom properties (`var(--color-bg-base)`, `var(--color-text-primary)`, `var(--color-accent)`, and the rest of the schema in section 2). A three-button mode switcher is just `document.documentElement.dataset.theme = "soft-dark"` plus localStorage.
+
+### Path 2: Next.js on Vercel (App Router, five minutes)
+
+Copy `theme.css` and `tuner.js` into your app (for example `app/theme.css` and `lib/temper/tuner.js`), then:
+
+```tsx
+// app/layout.tsx
+import "./theme.css";
+
+const themeInit = `try{var s=JSON.parse(localStorage.getItem("temper")||"{}");
+document.documentElement.dataset.theme=s.mode||"system";}catch(e){
+document.documentElement.dataset.theme="system";}`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+The inline script applies the stored mode before first paint, so there is no flash of the wrong theme; server-rendered HTML arrives neutral and the attribute lands before styles resolve. Then mount the tuner from any client component:
+
+```tsx
+// components/temper-tuner.tsx
+"use client";
+import { useEffect } from "react";
+
+export function TemperTuner() {
+  useEffect(() => {
+    let dispose: (() => void) | undefined;
+    import("@/lib/temper/tuner.js").then(({ initTuner }) => {
+      const t = initTuner();
+      dispose = t && t.destroy;
+    });
+    return () => dispose && dispose();
+  }, []);
+  return null;
+}
+```
+
+`initTuner()` renders the panel, persists choices, follows the OS for System, honors `prefers-contrast: more` by raising the solver floors, and applies derived palettes as CSS custom properties. A branded site passes options: `initTuner({ brand: { family: "iron", notches: [0, 1] } })` fixes or curates the color family and tone range; vision settings are never restrictable by design.
+
+### Path 3: Tailwind (v4)
+
+Map the semantic tokens once in your CSS entry and use them as utilities everywhere:
+
+```css
+@import "tailwindcss";
+@import "./theme.css";
+
+@theme inline {
+  --color-base: var(--color-bg-base);
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-text-primary);
+  --color-ink-soft: var(--color-text-secondary);
+  --color-line: var(--color-border);
+  --color-accent: var(--color-accent);
+}
+```
+
+Then `bg-base`, `text-ink`, `border-line`, `bg-surface`, `text-accent` respond to every mode and to the tuner automatically. If your bundler does not inline the second `@import`, paste the palette blocks from `theme.css` directly; they are generated, so regenerating them is one command (`node scripts/build-theme-css.mjs`).
+
+An npm package (`temper-color`) and framework adapter packages (a Next.js provider with a cookie mirror for fully server-rendered theming, a web component, Vue and Svelte wrappers) are planned; until then, vendoring the two files is the supported path and is how the first production adopter runs it.
+
 ## 1. Theme Philosophy
 
 Most sites ship two themes, light and dark, and treat them as opposites. That leaves two common complaints unaddressed. A crisp daylight light mode is often too high-contrast for long reading, and a single dark mode is often either too shallow for a bright room or too deep for a dim one. This system answers both by placing four explicit palettes on one luminance ladder and adding System as a fifth mode that maps to the OS preference.
