@@ -75,18 +75,13 @@ import { useEffect } from "react";
 
 export function TemperTuner() {
   useEffect(() => {
-    let dispose: (() => void) | undefined;
-    import("@/lib/temper/tuner.js").then(({ initTuner }) => {
-      const t = initTuner();
-      dispose = t && t.destroy;
-    });
-    return () => dispose && dispose();
+    import("@/lib/temper/tuner.js").then(({ initTuner }) => initTuner());
   }, []);
   return null;
 }
 ```
 
-`initTuner()` renders the panel, persists choices, follows the OS for System, honors `prefers-contrast: more` by raising the solver floors, and applies derived palettes as CSS custom properties. A branded site passes options: `initTuner({ brand: { family: "iron", notches: [0, 1] } })` fixes or curates the color family and tone range; vision settings are never restrictable by design.
+`initTuner()` renders the panel, persists choices, follows the OS for System, honors `prefers-contrast: more` by raising the solver floors, and applies derived palettes as CSS custom properties. A branded site passes options: `initTuner({ brand: { family: "iron", notchRange: [0, 1] } })` fixes or curates the color family and tone range; vision settings are never restrictable by design.
 
 ### Path 3: Tailwind (v4)
 
