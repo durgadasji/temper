@@ -1,0 +1,327 @@
+/*
+ * TEMPER - a five-mode semantic color system (a well-tempered palette)
+ * License: Apache-2.0
+ *
+ * GENERATED FILE. The four palettes below are emitted from derive.js at the
+ * middle notch, Iron family, default vision, by scripts/build-theme-css.mjs, so
+ * the static baseline and the parametric deriver share one source of truth. Edit
+ * the deriver's CONFIG and regenerate rather than editing values here by hand.
+ *
+ * Modes: System, Light, Soft Light, Soft Dark, Dark.
+ * Every visible color comes from a semantic custom property. Components read
+ * roles (surface, border, text) and never hard-code a hex value, so a single
+ * mode switch restyles the whole page.
+ *
+ * Selection model:
+ *   :root                      -> non-color tokens plus the Light palette as
+ *                                 the default, so a page renders correctly
+ *                                 before JavaScript runs.
+ *   [data-theme="system"]      -> follows the OS via prefers-color-scheme.
+ *                                 Light OS resolves to the Light palette
+ *                                 (inherited from :root); dark OS resolves to
+ *                                 Dark, the deep low-light palette. To prefer the
+ *                                 gentler Soft Dark, swap the Dark values in the
+ *                                 media block below for the Soft Dark palette.
+ *   [data-theme="light"]       -> Light
+ *   [data-theme="soft-light"]  -> Soft Light
+ *   [data-theme="soft-dark"]   -> Soft Dark
+ *   [data-theme="dark"]        -> Dark
+ *
+ * color-scheme is set per mode so native form controls, scrollbars, and
+ * caret colors follow the active palette.
+ */
+
+:root {
+  /* Non-color design tokens (shared, mode-independent) */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --ring-width: 3px;
+  --border-width: 1px;
+
+  /* Default palette: Light. Also serves System in a light-preference OS. */
+  color-scheme: light;
+
+  --color-bg-base: #F0F4F9;
+  --color-bg-subtle: #E7EAF0;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F2F5FB;
+  --color-surface-active: #E7EBF0;
+  --color-border: #C9CDD1;
+  --color-border-strong: #A7AAAF;
+  --color-text-primary: #17181A;
+  --color-text-secondary: #3F4143;
+  --color-text-tertiary: #56595C;
+  --color-text-on-accent: #FFFFFF;
+  --color-accent: #1E4E8C;
+  --color-accent-hover: #0A3E7A;
+  --color-accent-subtle: #C9E0FF;
+  --color-accent-solid: #3364A4;
+  --color-success: #255D34;
+  --color-success-subtle: #CAE7CF;
+  --color-warning: #704C00;
+  --color-warning-subtle: #F3DCBC;
+  --color-danger: #913327;
+  --color-danger-subtle: #FFD6CF;
+  --color-focus-ring: #2D5D9C;
+  --color-selection: #ABCFFF;
+  --color-code-bg: #E1E5EA;
+  --color-code-text: #17181A;
+  --color-table-stripe: #F7FAFF;
+  --color-overlay: rgba(1, 2, 3, 0.45);
+  --shadow-sm: 0 1px 2px rgba(23, 25, 27, 0.06);
+  --shadow-md: 0 4px 14px rgba(23, 25, 27, 0.10);
+}
+
+/*
+ * System mode in a dark-preference OS resolves to Dark (the deep palette). This
+ * is the least surprising default: an OS set to Dark Mode gets the deep Dark
+ * palette. For the gentler Soft Dark as the System-dark target, swap these
+ * values for the Soft Dark palette, or drive the theme from the tuner with
+ * resolveSystem's systemDark option set to 'soft-dark'.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+  [data-theme="system"] {
+    color-scheme: dark;
+
+    --color-bg-base: #14161A;
+    --color-bg-subtle: #0E1013;
+    --color-surface: #25282C;
+    --color-surface-hover: #2B2E32;
+    --color-surface-active: #323539;
+    --color-border: #313438;
+    --color-border-strong: #494C50;
+    --color-text-primary: #EFF1F4;
+    --color-text-secondary: #B8BABD;
+    --color-text-tertiary: #979A9D;
+    --color-text-on-accent: #FFFFFF;
+    --color-accent: #76A9EE;
+    --color-accent-hover: #90C0FF;
+    --color-accent-subtle: #112846;
+    --color-accent-solid: #4274B5;
+    --color-success: #74AE80;
+    --color-success-subtle: #142B19;
+    --color-warning: #C59A56;
+    --color-warning-subtle: #342306;
+    --color-danger: #EC8474;
+    --color-danger-subtle: #431A14;
+    --color-focus-ring: #6497DA;
+    --color-selection: #15345C;
+    --color-code-bg: #0A0C10;
+    --color-code-text: #EFF1F4;
+    --color-table-stripe: #0F1215;
+    --color-overlay: rgba(1, 2, 3, 0.58);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.42);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.55);
+  }
+}
+
+/* Explicit Light. Re-declared so it holds even in a dark-preference OS. */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg-base: #F0F4F9;
+  --color-bg-subtle: #E7EAF0;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F2F5FB;
+  --color-surface-active: #E7EBF0;
+  --color-border: #C9CDD1;
+  --color-border-strong: #A7AAAF;
+  --color-text-primary: #17181A;
+  --color-text-secondary: #3F4143;
+  --color-text-tertiary: #56595C;
+  --color-text-on-accent: #FFFFFF;
+  --color-accent: #1E4E8C;
+  --color-accent-hover: #0A3E7A;
+  --color-accent-subtle: #C9E0FF;
+  --color-accent-solid: #3364A4;
+  --color-success: #255D34;
+  --color-success-subtle: #CAE7CF;
+  --color-warning: #704C00;
+  --color-warning-subtle: #F3DCBC;
+  --color-danger: #913327;
+  --color-danger-subtle: #FFD6CF;
+  --color-focus-ring: #2D5D9C;
+  --color-selection: #ABCFFF;
+  --color-code-bg: #E1E5EA;
+  --color-code-text: #17181A;
+  --color-table-stripe: #F7FAFF;
+  --color-overlay: rgba(1, 2, 3, 0.45);
+  --shadow-sm: 0 1px 2px rgba(23, 25, 27, 0.06);
+  --shadow-md: 0 4px 14px rgba(23, 25, 27, 0.10);
+}
+
+/* Soft Light: warmer and gentler than Light, for long-form reading. */
+[data-theme="soft-light"] {
+  color-scheme: light;
+
+  --color-bg-base: #DBDEE3;
+  --color-bg-subtle: #D1D5DA;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F2F5FB;
+  --color-surface-active: #E7EBF0;
+  --color-border: #B6BABF;
+  --color-border-strong: #969A9F;
+  --color-text-primary: #060708;
+  --color-text-secondary: #37383B;
+  --color-text-tertiary: #4E5053;
+  --color-text-on-accent: #FFFFFF;
+  --color-accent: #0F417E;
+  --color-accent-hover: #003068;
+  --color-accent-subtle: #AFCCF3;
+  --color-accent-solid: #3364A4;
+  --color-success: #165028;
+  --color-success-subtle: #B6D3BB;
+  --color-warning: #604000;
+  --color-warning-subtle: #DFC8A8;
+  --color-danger: #82251A;
+  --color-danger-subtle: #F5BFB5;
+  --color-focus-ring: #1F508E;
+  --color-selection: #98BCED;
+  --color-code-bg: #CCD0D5;
+  --color-code-text: #060708;
+  --color-table-stripe: #E1E5EA;
+  --color-overlay: rgba(1, 2, 3, 0.45);
+  --shadow-sm: 0 1px 2px rgba(23, 25, 27, 0.06);
+  --shadow-md: 0 4px 14px rgba(23, 25, 27, 0.10);
+}
+
+/* Soft Dark: the primary dark working environment. Dark gray, not black. */
+[data-theme="soft-dark"] {
+  color-scheme: dark;
+
+  --color-bg-base: #24272A;
+  --color-bg-subtle: #1D2024;
+  --color-surface: #323539;
+  --color-surface-hover: #383B3F;
+  --color-surface-active: #3E4145;
+  --color-border: #3D4044;
+  --color-border-strong: #55585C;
+  --color-text-primary: #F9FAFD;
+  --color-text-secondary: #BFC1C4;
+  --color-text-tertiary: #9EA1A4;
+  --color-text-on-accent: #FFFFFF;
+  --color-accent: #86BAFF;
+  --color-accent-hover: #AFD1FF;
+  --color-accent-subtle: #1E3555;
+  --color-accent-solid: #4274B5;
+  --color-success: #84BE90;
+  --color-success-subtle: #213926;
+  --color-warning: #D6AA66;
+  --color-warning-subtle: #423014;
+  --color-danger: #FD9483;
+  --color-danger-subtle: #522721;
+  --color-focus-ring: #73A6EB;
+  --color-selection: #21416A;
+  --color-code-bg: #191C20;
+  --color-code-text: #F9FAFD;
+  --color-table-stripe: #1F2225;
+  --color-overlay: rgba(1, 2, 3, 0.58);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.42);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.55);
+}
+
+/* Dark: deeper low-light mode. Still readable, borders still visible. */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg-base: #14161A;
+  --color-bg-subtle: #0E1013;
+  --color-surface: #25282C;
+  --color-surface-hover: #2B2E32;
+  --color-surface-active: #323539;
+  --color-border: #313438;
+  --color-border-strong: #494C50;
+  --color-text-primary: #EFF1F4;
+  --color-text-secondary: #B8BABD;
+  --color-text-tertiary: #979A9D;
+  --color-text-on-accent: #FFFFFF;
+  --color-accent: #76A9EE;
+  --color-accent-hover: #90C0FF;
+  --color-accent-subtle: #112846;
+  --color-accent-solid: #4274B5;
+  --color-success: #74AE80;
+  --color-success-subtle: #142B19;
+  --color-warning: #C59A56;
+  --color-warning-subtle: #342306;
+  --color-danger: #EC8474;
+  --color-danger-subtle: #431A14;
+  --color-focus-ring: #6497DA;
+  --color-selection: #15345C;
+  --color-code-bg: #0A0C10;
+  --color-code-text: #EFF1F4;
+  --color-table-stripe: #0F1215;
+  --color-overlay: rgba(1, 2, 3, 0.58);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.42);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.55);
+}
+
+/* A shared selection color for the whole document. */
+::selection {
+  background: var(--color-selection);
+}
+
+/*
+ * Vision: redundant text encoding (the primary color-vision guard).
+ *
+ * Meaning is never carried by color alone. Set data-vision on the root to any
+ * non-default value ("rg", "by", or "mono") and this block makes the redundant
+ * channel visible: links gain an underline, and status dots reveal a text mark.
+ * The palette also shifts to confusion-safe status hues with staggered
+ * luminance, but that is the secondary guard; this is the primary one, because
+ * text survives every deficiency, monochrome output, and a screen reader.
+ *
+ * Component contract: any meaning a component encodes in color it must also
+ * expose as text or a glyph. For a status indicator, give the element the
+ * "status-dot" class and a "data-letter" attribute (for example data-letter="S"
+ * for success). The rule below renders that letter beside the dot under any
+ * non-default vision. This works with zero JavaScript: set data-vision in your
+ * HTML and the encoding is on.
+ */
+[data-vision]:not([data-vision="default"]) a {
+  text-decoration: underline;
+}
+
+[data-vision]:not([data-vision="default"]) .status-dot {
+  position: relative;
+}
+[data-vision]:not([data-vision="default"]) .status-dot::after {
+  content: attr(data-letter);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7em;
+  line-height: 1;
+  color: var(--color-text-secondary);
+}
+
+/*
+ * forced-colors (Windows High Contrast and similar): step aside.
+ *
+ * When the user has imposed a limited system palette, the correct behavior for a
+ * theming package is to yield, not to fight it with custom colors. Under
+ * forced-colors the browser already substitutes system colors for most
+ * properties; this block makes the deference explicit and keeps the redundant
+ * text encoding on, since forced-colors does not restore color as a carrier of
+ * meaning. The status dot border ensures the indicator stays visible when its
+ * background is overridden.
+ */
+@media (forced-colors: active) {
+  :root { color-scheme: light dark; }
+  a { text-decoration: underline; }
+  .status-dot {
+    border: 1px solid CanvasText;
+  }
+  .status-dot::after {
+    content: attr(data-letter);
+    color: CanvasText;
+  }
+}
