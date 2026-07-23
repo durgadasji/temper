@@ -1,6 +1,6 @@
 # TEMPER
 
-A production-ready semantic color system with five appearance modes on one shared token schema. It targets dense text, dashboards, documentation, and standards-oriented sites: readability first, clear surface delineation, low visual noise. No build step is required to use it; the whole system is one CSS file, one JSON export, and a small switcher. On npm it is published as `temper-color`.
+A production-ready semantic color system with five appearance modes on one shared token schema. It targets dense text, dashboards, documentation, and standards-oriented sites: readability first, clear surface delineation, low visual noise. No build step is required to use it; the whole system is one CSS file, one JSON export, and a small switcher.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/temper-overview-dark.svg">
